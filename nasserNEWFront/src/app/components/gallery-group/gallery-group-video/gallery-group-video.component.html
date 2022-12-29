@@ -1,0 +1,19 @@
+<div class="gallery-group">
+  <div class="card-img-overlay" style="width: 24px;height: 24px;padding-top: 5px;padding-left: 157px;" id="overlay+${element.getId()}">
+    <input class="fav-star" id="fav+${element.getId()}"
+           onclick="updateFavorites([[${element.getId()}]], [[${currentPage}]])"
+           src="/assets/img/favorite.png"
+           type="image">
+  </div>
+  <a class="gallery-link" href="#">
+    <img class="gallery-image"
+         id="glid"
+         onmouseout="previewOnMouseOut([[${element.getId()}]], [[${fileStorageService.getThumb(element.getName())}]])"
+         onmouseover="previewOnMouseOver([[${element.getId()}]], [[${fileStorageService.getPreview(element.getName())}]])"
+         src="#">
+  </a>
+  <div class="gallery-title">
+    <a href="#">
+      <h4 [className]="'gallery-title-text '+ color" [textContent]="'testing :D'"><br></h4></a>
+  </div>
+</div>

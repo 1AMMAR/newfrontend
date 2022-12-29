@@ -1,0 +1,65 @@
+<div class="hero" style="width: 100%;height: 100%; padding-left: 5%;padding-right: 5%;">
+  <h1><a routerLink="streaming">List of Streamers</a>&nbsp;&gt;&nbsp; {{modelName}}</h1>
+  <div class="hero" style="padding-left: 5%;padding-right: 5%;">
+    <div class="row">
+      <div class="col">
+        <img id="profileImage" style="width: 60%;margin-bottom: 20px;margin-left: 20px;" src=""/>
+      </div>
+      <div class="col"></div>
+      <div class="col">
+        <app-model-image-upload></app-model-image-upload>
+      </div>
+    </div>
+  </div>
+  <div th:if="${isEmpty}" th:switch="${model}">
+    <h1 th:case="true" th:text="'There are no models with videos at the moment'"></h1>
+    <h1 th:case="false" th:text="'There are no videos for this model at the moment'"></h1>
+  </div>
+  <div id="gallery-container">
+    <div class="gallery-group" th:each="element: ${page.getContent()}" th:unless="${element} == null">
+      <div class="card-img-overlay" style="width: 24px;height: 24px;padding-top: 5px;padding-left: 157px;" th:id="overlay+${element.getId()}"
+           th:unless="${model}">
+        <!--/*@thymesVar id="element" type="com.tanger.streamsaver.entity.FileEntity"*/-->
+        <p th:switch="${element.isFavorite()}">
+          <input style="width: 24px;height: 24px;" th:case="true" th:id="fav+${element.getId()}"
+                 th:onclick="updateFavorites([[${element.getId()}]], [[${currentPage}]])"
+                 th:src="@{/assets/img/favorite.png}"
+                 type="image">
+          <input style="width: 24px;height: 24px;" th:case="false" th:id="fav+${element.getId()}"
+                 th:onclick="updateFavorites([[${element.getId()}]], [[${currentPage}]])"
+                 th:src="@{/assets/img/not_favorite.png}" type="image">
+        </p>
+      </div>
+      <a class="gallery-link" th:href="@{/streaming(modelID=${element.getId()})}" th:if="${model}">
+        <img class="gallery-image"
+             th:id="thumb+${element.getId()}"
+             th:onerror="'this.src=\'' + @{/assets/img/no-image.png} + '\';'"
+             th:src="@{${fileStorageService.getProfilePicture(element.getName())}}">
+      </a>
+      <a class="gallery-link" th:href="@{/view(fileID=${element.getId()})}" th:unless="${model}">
+        <img class="gallery-image"
+             th:id="thumb+${element.getId()}"
+             th:onerror="'this.src=\'' + @{/assets/img/no-image.png} + '\';'"
+             th:onmouseout="previewOnMouseOut([[${element.getId()}]], [[${fileStorageService.getThumb(element.getName())}]])"
+             th:onmouseover="previewOnMouseOver([[${element.getId()}]], [[${fileStorageService.getPreview(element.getName())}]])"
+             th:src="@{${fileStorageService.getThumb(element.getName())}}">
+      </a>
+      <div class="gallery-title">
+        <a th:href="@{/streaming(modelID=${element.getId()})}" th:if="${model}">
+          <h4 style="color: #ffffff;font-size: 0.8vw;"
+              th:text="${element.getName()}"><br></h4></a>
+        <a th:href="@{/view(fileID=${element.getId()})}" th:unless="${model}">
+          <h4 th:style="'color:' + ${element.getColor()} + ';font-size: 0.8vw;'"
+              th:text="${element.getName()}"><br></h4></a>
+      </div>
+    </div>
+  </div>
+  <div class="row" th:switch="${model}" th:unless="${isEmpty}">
+    <div class="col" th:case="true">
+      <nav th:replace="fragments :: paginationModels"></nav>
+    </div>
+    <div class="col" th:case="false">
+      <nav th:replace="fragments :: paginationFiles"></nav>
+    </div>
+  </div>
+</div>
