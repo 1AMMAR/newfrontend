@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-streaming',
@@ -6,20 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./streaming.component.css']
 })
 export class StreamingComponent implements OnInit {
-  num: number;
-  constructor() {
-    this.num = 5;
-  }
 
-  getNum(): number {
-    return this.num;
-  }
-
-  updateNum(x: any): void {
-    console.log(this.num);
+  constructor(private route:Router) {
+    
   }
 
   ngOnInit(): void {
   }
+  
+ 
 
 }

@@ -1,0 +1,71 @@
+
+.col
+{
+   
+  transform: scale(0.8);
+  transition: 0.5s;
+  box-shadow: 15px 1px 1px rgba(0, 0, 0, 0.204);
+  
+  transition-duration: 0.5s;
+   
+  animation: showup 0.9s forwards ;
+ 
+}
+
+@keyframes showup
+{
+    from{opacity: 0.1; scale: 0.3; }
+    to{opacity: 1; scale: 1; }
+}
+
+.col:hover
+{
+transform: scale(0.9);
+  transition: 0.8s;
+  box-shadow: 25px 15px 20px rgba(0, 0, 0, 0.204);
+ 
+  
+
+}
+
+img {
+width:50%;
+height:50%;
+object-fit:cover;
+border-radius: 8px;
+transition: 0.8s;
+box-shadow: 25px 15px 20px rgba(0, 0, 0, 0.204);
+}
+
+img:hover
+{
+transform: scale(1.1);
+transition: 0.8s;
+}
+
+div{
+color: white;
+font-family: 'nunito';
+border-radius: 20px;
+
+}
+
+
+.modelname
+{
+text-decoration: none;
+ color: white;
+ text-shadow: 0px 2px black;
+ transition: 0.5s;
+}
+
+
+
+.modelname:hover
+{
+transition: 0.5;
+
+color: rgb(255, 252, 66);
+text-shadow: 0 0px ;
+}
+

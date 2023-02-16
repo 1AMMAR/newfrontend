@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
+import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
 import {RouterModule} from '@angular/router';
@@ -19,9 +20,12 @@ import { ModelVideosComponent } from './components/listing/model-videos/model-vi
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ModelImageUploadComponent } from './components/model-image-upload/model-image-upload.component';
 import { ModeldetailsComponent } from './components/modeldetails/modeldetails.component';
+import { UserStreamingComponent } from './user-streaming/user-streaming.component';
+import { VideosComponent } from './videos/videos.component';
 
 @NgModule({
   declarations: [
+    
     AppComponent,
     HeaderComponent,
     StreamingComponent,
@@ -36,13 +40,16 @@ import { ModeldetailsComponent } from './components/modeldetails/modeldetails.co
     ModelVideosComponent,
     PaginationComponent,
     ModelImageUploadComponent,
-    ModeldetailsComponent
+    ModeldetailsComponent,
+    UserStreamingComponent,
+    VideosComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     NgbModule,
     RouterModule.forRoot([
+      {path: 'modeldetails', component: ModeldetailsComponent},
       {path: 'streaming', component: StreamingComponent},
       {path: 'login', component: LoginComponent},
       {path: 'admin', component: AdminComponent},
