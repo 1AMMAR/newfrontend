@@ -8,9 +8,9 @@ body {
   overflow-x: hidden;
 
   
-	background-size: 150% 150%;
+	background-size: 180% 180%;
 	
-  animation: gradient 15s ease infinite;
+  animation: gradient 10s ease infinite;
 }
 
 
